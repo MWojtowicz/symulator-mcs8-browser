@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:pages": "npm run build && mkdir -p docs && cp dist/index.html docs/index.html && touch docs/.nojekyll"
   },
   "dependencies": {
     "react": "^19.3.0",

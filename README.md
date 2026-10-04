@@ -1,5 +1,7 @@
 # Symulator MCS-8 (wersja przeglądarkowa)
 
+**▶ Uruchom w przeglądarce: https://mwojtowicz.github.io/symulator-mcs8-browser/**
+
 Port symulatora `mcs8krok.exe` (J. Pawlewski, UŚ 2004) do przeglądarki: React + TypeScript + Vite.
 Wygląd i grafika (wyświetlacze, kontrolki, przyciski, tło) pochodzą z oryginału; BIOS z `bios.txt`.
 
@@ -8,6 +10,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm test         # testy procesora na programach z laboratorium
 npm run build    # dist/index.html – jeden samodzielny plik
+npm run build:pages  # to samo + kopia do docs/index.html (GitHub Pages)
 ```
 
 Gotową wersję można pobrać ze strony [Releases](https://github.com/MWojtowicz/symulator-mcs8-browser/releases):
