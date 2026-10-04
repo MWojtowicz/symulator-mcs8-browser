@@ -1,5 +1,7 @@
 # Symulator MCS-8 (wersja przeglądarkowa)
 
+[![Tests](https://github.com/MWojtowicz/symulator-mcs8-browser/actions/workflows/test.yml/badge.svg)](https://github.com/MWojtowicz/symulator-mcs8-browser/actions/workflows/test.yml)
+
 **▶ Uruchom w przeglądarce: https://mwojtowicz.github.io/symulator-mcs8-browser/**
 
 Port symulatora `mcs8krok.exe` (J. Pawlewski, UŚ 2004) do przeglądarki: React + TypeScript + Vite.
