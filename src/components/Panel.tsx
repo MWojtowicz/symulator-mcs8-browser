@@ -1,7 +1,9 @@
 // Front-panel pieces drawn with the original simulator's bitmaps.
 import { LAMPS, type Lamp as LampName } from '../cpu/i8080'
 
-const img = (name: string) => `${import.meta.env.BASE_URL}img/${name}`
+// bundled (inlined in the single-file build) so the app also runs straight from disk
+const images = import.meta.glob('../img/*', { query: '?url', import: 'default', eager: true }) as Record<string, string>
+export const img = (name: string) => images[`../img/${name}`]
 
 /** 7-segment display; null shows dashes (bus in high impedance) */
 export function SevenSeg({ value, digits }: { value: number | null; digits: number }) {

@@ -7,8 +7,11 @@ Wygląd i grafika (wyświetlacze, kontrolki, przyciski, tło) pochodzą z orygin
 npm install
 npm run dev      # http://localhost:5173
 npm test         # testy procesora na programach z laboratorium
-npm run build    # statyczna wersja w dist/ (dowolny serwer HTTP)
+npm run build    # dist/index.html – jeden samodzielny plik
 ```
+
+Gotową wersję można pobrać ze strony [Releases](https://github.com/MWojtowicz/symulator-mcs8-browser/releases):
+plik `symulator-mcs8.html` otwiera się bezpośrednio w przeglądarce (bez instalacji i bez serwera).
 
 ## Obsługa (jak w oryginale)
 - **Wczytaj plik do RAM** – plik z bajtami hex od 0800h (z dysku, gotowe programy z laboratorium albo wpisane ręcznie). Błędne bajty → 00 i komunikat.

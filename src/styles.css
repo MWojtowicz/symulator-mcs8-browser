@@ -13,7 +13,7 @@ html, body { margin: 0; background: var(--page); color: var(--page-fg); font-fam
 .stage-frame { position: relative; overflow: hidden; box-shadow: 0 6px 28px rgba(0, 0, 0, .5); flex: none; }
 .stage {
   position: absolute; left: 0; top: 0; width: 800px; height: 600px; transform-origin: 0 0;
-  background: #8fcdf3 url(/img/tlo.png) no-repeat; color: var(--ink); user-select: none;
+  background: #8fcdf3 url(./img/tlo.png) no-repeat; color: var(--ink); user-select: none;
 }
 .stage > * { position: absolute; }
 .title { left: 66px; top: 0; width: 470px; pointer-events: none; }
@@ -45,10 +45,10 @@ html, body { margin: 0; background: var(--page); color: var(--page-fg); font-fam
 /* front panel keys */
 .key { display: flex; align-items: center; gap: 11px; background: none; border: 0; padding: 0; cursor: pointer; font: 16px var(--panel-font); color: var(--ink); }
 .key-cap { width: 29px; height: 52px; background: no-repeat center / 29px 52px; }
-.key-red .key-cap { background-image: url(/img/btn_red_up.gif); }
-.key-grey .key-cap { background-image: url(/img/btn_grey_up.gif); }
-.key-red:active .key-cap { background-image: url(/img/btn_red_down.gif); background-size: 27px 50px; }
-.key-grey:active .key-cap, .key-grey.latched .key-cap { background-image: url(/img/btn_grey_down.gif); background-size: 27px 50px; }
+.key-red .key-cap { background-image: url(./img/btn_red_up.gif); }
+.key-grey .key-cap { background-image: url(./img/btn_grey_up.gif); }
+.key-red:active .key-cap { background-image: url(./img/btn_red_down.gif); background-size: 27px 50px; }
+.key-grey:active .key-cap, .key-grey.latched .key-cap { background-image: url(./img/btn_grey_down.gif); background-size: 27px 50px; }
 .key:focus-visible { outline: 2px dashed var(--ink); outline-offset: 2px; }
 
 /* registers, flags, stack */

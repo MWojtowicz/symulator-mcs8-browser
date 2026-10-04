@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import { Simulator } from './cpu/simulator'
 import { hex2, hex4, type ParsedProgram } from './cpu/parse'
-import { Lamps, PanelKey, SevenSeg } from './components/Panel'
+import { img, Lamps, PanelKey, SevenSeg } from './components/Panel'
 import { LoadScreen, PortsScreen, RegistersScreen } from './components/Screens'
 import { Listing } from './components/Listing'
 
@@ -89,7 +89,7 @@ export default function App() {
     <div className="page">
       <div className="stage-frame" style={{ width: STAGE_W * scale, height: STAGE_H * scale }}>
         <div className="stage" style={{ transform: `scale(${scale})` }}>
-          <img className="title" src={`${import.meta.env.BASE_URL}img/sym.png`} alt="Symulator MCS-8" draggable={false} />
+          <img className="title" src={img('sym.png')} alt="Symulator MCS-8" draggable={false} />
 
           {screen === 'main' && (
             <>
