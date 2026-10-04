@@ -16,6 +16,16 @@ npm run build:pages  # to samo + kopia do docs/index.html (GitHub Pages)
 Gotową wersję można pobrać ze strony [Releases](https://github.com/MWojtowicz/symulator-mcs8-browser/releases):
 plik `symulator-mcs8.html` otwiera się bezpośrednio w przeglądarce (bez instalacji i bez serwera).
 
+## Dwa interfejsy
+- **Klasyczny** (domyślny): wierne odwzorowanie ekranu oryginalnego symulatora.
+- **Nowoczesny**: panel z kartami – magistrale z podglądem bitów i opisem bieżącego cyklu, kontrolki,
+  sterowanie (STEP, tryb, praca ciągła z regulacją szybkości), rejestry i flagi edytowane kliknięciem, listing programu,
+  porty, stos i historia cykli maszynowych. Jasny i ciemny motyw, układ dopasowany do telefonu.
+  Poprawnie wczytany program startuje od razu od 0800h.
+
+Przełącznik „Interfejs” znajduje się na dole strony w obu widokach. Oba korzystają z tego samego stanu
+symulatora, więc można je przełączać w trakcie pracy; wybór jest zapamiętywany w przeglądarce.
+
 ## Obsługa (jak w oryginale)
 - **Wczytaj plik do RAM** – plik z bajtami hex od 0800h (z dysku, gotowe programy z laboratorium albo wpisane ręcznie). Błędne bajty → 00 i komunikat.
 - **Start od komórki 800h** – zeruje rejestry i flagi, PC = 0800h, SP = 0FFFh (aktywny tylko po poprawnym wczytaniu).

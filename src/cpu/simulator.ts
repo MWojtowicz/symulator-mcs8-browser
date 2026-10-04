@@ -2,9 +2,22 @@
 // loading a program into RAM and "Start od komórki 800h".
 import { CYCLE_LAMPS, I8080, PROGRAM_START, type Cycle, type Lamp } from './i8080'
 import { parseProgram } from './parse'
+import { disassemble } from './disasm'
 import biosText from './bios.txt?raw'
 
 export type StepMode = 'machine' | 'instruction'
+
+export interface HistoryEntry {
+  /** running cycle number since RESET / Start */
+  n: number
+  cycle: Cycle
+  /** machine cycle number within the instruction (1 = M1) */
+  m: number
+  /** instruction the cycle belongs to */
+  instr: string
+}
+
+const HISTORY_LIMIT = 200
 
 export class Simulator {
   cpu = new I8080()
@@ -21,6 +34,12 @@ export class Simulator {
   programLength = 0
   /** address of the instruction currently being executed (last M1 / INTA) */
   instrAddr = 0
+  /** machine cycle number within the current instruction (1 = M1) */
+  cycleIndex = 1
+  /** most recent machine cycles, oldest first */
+  history: HistoryEntry[] = []
+  private cycleCount = 0
+  private instrText = ''
 
   constructor() {
     const bios = parseProgram(biosText).bytes
@@ -33,6 +52,7 @@ export class Simulator {
     this.cpu.reset()
     this.holdRequest = false
     this.inHold = false
+    this.clearHistory()
     this.restart()
   }
 
@@ -43,8 +63,29 @@ export class Simulator {
   }
 
   private advance() {
-    this.cycle = this.gen.next().value
-    if (this.cycle.first && this.cycle.type !== 'HALTA') this.instrAddr = this.cycle.addr
+    const c = (this.cycle = this.gen.next().value)
+    if (c.first) {
+      this.cycleIndex = 1
+      if (c.type !== 'HALTA') this.instrAddr = c.addr
+      this.instrText =
+        c.type === 'FETCH' ? disassemble(this.cpu.mem, c.addr).text
+        : c.type === 'HALTA' ? 'HLT (zatrzymanie)'
+        : 'RST 7 (przerwanie)'
+    } else this.cycleIndex++
+    this.history.push({ n: ++this.cycleCount, cycle: c, m: this.cycleIndex, instr: this.instrText })
+    if (this.history.length > HISTORY_LIMIT) this.history.shift()
+  }
+
+  private clearHistory() {
+    this.history = []
+    this.cycleCount = 0
+  }
+
+  /** a new PC means decoding starts again from that address */
+  setPC(v: number) {
+    this.cpu.pc = v & 0xffff
+    this.cpu.halted = false
+    this.restart()
   }
 
   /** Copies program bytes to RAM from 0800h. Returns the parse result for error reporting. */
@@ -60,6 +101,7 @@ export class Simulator {
   startUser() {
     this.cpu.startUser()
     this.inHold = false
+    this.clearHistory()
     this.restart()
   }
 

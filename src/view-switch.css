@@ -1,0 +1,17 @@
+.vs {
+  display: inline-flex; align-items: center; gap: 4px; padding: 5px; border-radius: 999px;
+  background: #1b1f26; border: 1px solid #3a414d; box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+  font: 600 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.vs-label { color: #9aa3b0; padding: 0 8px 0 12px; font-weight: 500; }
+.vs button {
+  border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; background: transparent;
+  color: #d3d9e2; font: inherit; white-space: nowrap; transition: background .15s, color .15s;
+}
+.vs button:hover:not(.on) { background: #2a303a; color: #fff; }
+.vs button.on { background: #ffb22e; color: #1b1300; }
+.vs button:focus-visible { outline: 2px solid #ffb22e; outline-offset: 2px; }
+@media (max-width: 480px) {
+  .vs { flex-wrap: wrap; justify-content: center; border-radius: 18px; }
+  .vs-label { width: 100%; text-align: center; padding: 4px 0; }
+}

@@ -2,8 +2,8 @@
 import { LAMPS, type Lamp as LampName } from '../cpu/i8080'
 
 // bundled (inlined in the single-file build) so the app also runs straight from disk
-const images = import.meta.glob('../img/*', { query: '?url', import: 'default', eager: true }) as Record<string, string>
-export const img = (name: string) => images[`../img/${name}`]
+const images = import.meta.glob('./img/*', { query: '?url', import: 'default', eager: true }) as Record<string, string>
+export const img = (name: string) => images[`./img/${name}`]
 
 /** 7-segment display; null shows dashes (bus in high impedance) */
 export function SevenSeg({ value, digits }: { value: number | null; digits: number }) {

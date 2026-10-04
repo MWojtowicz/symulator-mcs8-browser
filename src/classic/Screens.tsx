@@ -2,17 +2,8 @@
 import { useRef, useState } from 'react'
 import type { Simulator } from '../cpu/simulator'
 import { hex2, hex4, parseNumber } from '../cpu/parse'
+import { LAB_PROGRAMS } from '../programs'
 
-const programs = import.meta.glob('../programs/*.txt', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
-
-const PROGRAM_INFO: [string, string][] = [
-  ['start.txt', 'rozgrzewka: 5 + 3'],
-  ['przyklad.txt', 'zadanie 1 – cykl rozkazowy'],
-  ['flagi.txt', 'zadanie 2 – flagi'],
-  ['suma.txt', 'zadanie 3 – pętla'],
-  ['tablica.txt', 'zadanie 4 – tablica w pamięci'],
-  ['podprogram.txt', 'zadanie 5 – stos i podprogram'],
-]
 
 const NUMBER_HINT = 'Liczbę podaj z przyrostkiem: b – dwójkowo, h – szesnastkowo, d lub brak – dziesiętnie.'
 
@@ -38,8 +29,8 @@ export function LoadScreen({ onLoad, onCancel }: { onLoad: (name: string, text: 
       </div>
       <p className="prompt">Programy z laboratorium:</p>
       <div className="program-list">
-        {PROGRAM_INFO.map(([file, desc]) => (
-          <button key={file} className="action wide" onClick={() => onLoad(file, programs[`../programs/${file}`])}>
+        {LAB_PROGRAMS.map(({ file, desc, text }) => (
+          <button key={file} className="action wide" onClick={() => onLoad(file, text)}>
             <b>{file}</b> <span>{desc}</span>
           </button>
         ))}
@@ -130,9 +121,8 @@ export function RegistersScreen({ sim, onChange, onClose }: { sim: Simulator; on
   const set16 = (r: 'pc' | 'sp') => {
     const n = parseNumber(value, 65535)
     if (n === null) return setError('Niepoprawna liczba! (rejestr 16-bitowy: 0–65535)')
-    cpu[r] = n
-    // a new PC means decoding starts again from that address
-    if (r === 'pc') { cpu.halted = false; sim.restart() }
+    if (r === 'pc') sim.setPC(n)
+    else cpu[r] = n
     done()
   }
   const toggle = (f: Flag) => { cpu[f] = !cpu[f]; setError(''); onChange() }

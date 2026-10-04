@@ -89,6 +89,21 @@ describe('lab programs', () => {
 })
 
 describe('front panel', () => {
+  it('records machine cycles with their M number and instruction', () => {
+    const sim = boot('suma')
+    sim.instrMode = false
+    sim.step() // MVI A operand read
+    expect(sim.cycleIndex).toBe(2)
+    expect(sim.history.map((h) => [h.m, h.cycle.type, h.instr])).toEqual([
+      [1, 'FETCH', 'MVI A,00h'],
+      [2, 'MEMR', 'MVI A,00h'],
+    ])
+    sim.setPC(0x800)
+    expect(sim.cycle).toMatchObject({ type: 'FETCH', addr: 0x800 })
+    sim.startUser()
+    expect(sim.history).toHaveLength(1)
+  })
+
   it('RESET starts BIOS fetch at 0000h with C3 on the data bus', () => {
     const sim = new Simulator()
     expect(sim.cycle).toMatchObject({ type: 'FETCH', addr: 0, data: 0xc3 })
