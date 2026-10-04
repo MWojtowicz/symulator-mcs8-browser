@@ -5,6 +5,7 @@ import type { UIProps } from '../App'
 import { img, Lamps, PanelKey, SevenSeg } from './Panel'
 import { LoadScreen, PortsScreen, RegistersScreen } from './Screens'
 import { Listing } from './Listing'
+import { Credits } from '../Credits'
 import './classic.css'
 
 type Screen = 'main' | 'load' | 'ports' | 'registers'
@@ -182,6 +183,7 @@ export default function ClassicApp({ sim, refresh, loadInfo, loadProgram: load, 
       </div>
       {showListing && <Listing sim={sim} width={STAGE_W * scale} />}
       <div className="view-switch-bar">{viewSwitch}</div>
+      <div className="credits-bar" style={{ width: STAGE_W * scale }}><Credits /></div>
     </div>
   )
 }

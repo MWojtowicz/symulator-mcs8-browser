@@ -1,0 +1,9 @@
+/* Neutral styling: inherits text colour so it fits the classic page and both modern themes. */
+.cr { width: min(760px, 100%); margin: 10px auto 0; font: 13px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: inherit; text-align: left; }
+.cr summary { cursor: pointer; text-align: center; opacity: .8; padding: 4px; list-style-position: inside; }
+.cr summary:hover { opacity: 1; }
+.cr summary:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.cr-body { margin-top: 8px; padding: 14px 18px; border-radius: 12px; border: 1px solid color-mix(in srgb, currentColor 22%, transparent); }
+.cr-body p { margin: 0 0 8px; }
+.cr-body a { color: inherit; }
+.cr-body pre { margin: 0; font: 11px/1.45 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; opacity: .85; max-height: 220px; overflow: auto; }

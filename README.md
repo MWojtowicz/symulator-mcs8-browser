@@ -37,6 +37,16 @@ symulatora, więc można je przełączać w trakcie pracy; wybór jest zapamięt
 - **HOLD** – stan zawieszenia: magistrale „----”, świeci HLDA.
 - **Zmień zaw. portów / rejestrów** – liczby z przyrostkiem `b`, `h`, `d` (brak = dziesiętnie).
 
+## Autorzy i źródła
+- Oryginalny symulator, jego działanie, grafiki i układ widoku klasycznego: **Jakub Pawlewski**,
+  *Symulator systemu MCS-8 w środowisku MAMS. Praca krokowa*, praca dyplomowa (promotor: dr inż. Jarosław Zyguła),
+  Uniwersytet Śląski, Instytut Informatyki, Zakład Systemów Komputerowych, Sosnowiec 2004.
+- BIOS systemu MCS-8.2: z dystrybucji oryginalnego symulatora (autor nieustalony).
+- Programy z laboratorium: instrukcja *Laboratorium 1*, autor instrukcji: Damian Grygierczyk.
+- React, React DOM, Scheduler: MIT, © Meta Platforms, Inc. and affiliates.
+
+Szczegóły i pełne teksty licencji: [CREDITS.md](CREDITS.md). W aplikacji: „Autorzy i licencje” na dole strony.
+
 ## Dodatki względem oryginału
 - Spacja / Enter = STEP, kliknięcie komórki portu = edycja portu, upuszczenie pliku .txt = wczytanie.
 - Opcjonalny podgląd pamięci z deasemblacją (pod panelem).

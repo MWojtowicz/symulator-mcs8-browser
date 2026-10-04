@@ -28,6 +28,7 @@ npm run build:pages   # build + copy to docs/index.html (+ docs/.nojekyll) for G
 - `src/App.tsx` – root: owns the single `Simulator`, `loadInfo` (with `seq`), file drop, and which view is shown. `src/ViewSwitch.tsx` – the bottom "Interfejs" toggle, rendered by both views via the `viewSwitch` prop.
 - `src/classic/` – faithful 800×600 Authorware screen scaled to the window, using the original bitmaps in `src/classic/img/`. **Default view.**
 - `src/modern/` – card dashboard (bus readouts, controls with continuous run, registers/flags/ports editable inline, listing, stack, cycle history), light/dark theme. Uses none of the classic bitmaps or controls.
+- `src/Credits.tsx` – "Autorzy i licencje" panel shown at the bottom of both views. It carries React's MIT notice (imported from `node_modules/react/LICENSE?raw`), which the minified bundle would otherwise drop, so keep it in both views. `CREDITS.md` holds the full attribution; update both when adding third-party material. The BIOS author is unknown: web searches (2026-10) found nothing beyond this repo.
 - localStorage keys: `mcs8.ui` (`classic`|`modern`), `mcs8.theme`. Always wrap storage access in try/catch.
 - CSS scoping: classic rules under `.classic-root` / its own class names, modern under `.m-*` with variables on `.m-root`, switcher under `.vs`. Both stylesheets are bundled together, so never add bare global selectors.
 
@@ -79,4 +80,4 @@ Repo: `git@github.com:MWojtowicz/symulator-mcs8-browser.git` (public). Pages: ht
 1. `npm test`, bump `version` in package.json, `npm run build:pages`.
 2. Commit (message ends with the Co-Authored-By attribution line), `git push`.
 3. Wait for Pages: poll `gh api repos/MWojtowicz/symulator-mcs8-browser/pages/builds/latest --jq '.status + " " + .commit'` until it is `built <sha>`, then check `curl -s <pages url> | cmp - docs/index.html`.
-4. Release: in a scratch dir, make `symulator-mcs8.html` (copy of dist/index.html) and `symulator-mcs8-vX.Y.Z.zip` (folder `symulator-mcs8/` with the html, `programy/*.txt` and README.md). Then `gh release create vX.Y.Z <html> <zip> --target main --title "Symulator MCS-8 vX.Y.Z" --notes-file notes.md`. Notes are in Polish: the online link, "Nowości", "Pobieranie", and end with the Claude Code footer.
+4. Release: in a scratch dir, make `symulator-mcs8.html` (copy of dist/index.html) and `symulator-mcs8-vX.Y.Z.zip` (folder `symulator-mcs8/` with the html, `programy/*.txt`, README.md and CREDITS.md). Then `gh release create vX.Y.Z <html> <zip> --target main --title "Symulator MCS-8 vX.Y.Z" --notes-file notes.md`. Notes are in Polish: the online link, "Nowości", "Pobieranie", and end with the Claude Code footer.

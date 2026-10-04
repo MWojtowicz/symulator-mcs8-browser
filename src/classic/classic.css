@@ -105,3 +105,4 @@ body[data-ui="classic"] { background: var(--page); }
 .listing td, .listing th { padding: 1px 12px 1px 4px; }
 .listing tr.current { background: #5b4a12; color: #fff; }
 .view-switch-bar { display: flex; justify-content: center; padding: 6px 0 4px; }
+.credits-bar { max-width: 100%; color: #aab3bf; }

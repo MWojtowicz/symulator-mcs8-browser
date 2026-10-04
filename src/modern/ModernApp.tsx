@@ -4,6 +4,7 @@ import type { UIProps } from '../App'
 import { BusCard, ControlsCard, HistoryCard, ListingCard, PortsCard, RegistersCard, StackCard, type Speed } from './cards'
 import { LoadDialog } from './LoadDialog'
 import { Btn, Icon } from './ui'
+import { Credits } from '../Credits'
 import './modern.css'
 
 const THEME_KEY = 'mcs8.theme'
@@ -121,6 +122,7 @@ export default function ModernApp({ sim, refresh, loadInfo, loadProgram, viewSwi
       <footer className="m-footer">
         <div className="m-footer-switch">{viewSwitch}</div>
         Spacja / Enter = STEP · liczby: <code>34h</code>, <code>1010b</code>, <code>52</code> · port oryginalnego symulatora MCS-8 (J. Pawlewski, UŚ 2004)
+        <Credits />
       </footer>
 
       {loading && <LoadDialog onLoad={loadProgram} onClose={() => setLoading(false)} />}
